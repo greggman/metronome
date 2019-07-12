@@ -26,6 +26,7 @@ body, button, input {
 }
 input {
   width: 300px;
+  background: transparent;
 }
 #main {
   width: 100%;
@@ -36,18 +37,37 @@ input {
 }
 #main>div {
   width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#main>div>div {
+  width: 100%;
+}
+.flash0 {
+  animation: flashanim0 0.2s linear 1;
+}
+.flash1 {
+  animation: flashanim1 0.2s linear 1;
 }
 
-.flash {
-  animation: flashanim 1 linear infinite;
-}
-
-@keyframes flashanim {
+@keyframes flashanim0 {
   0% {
-    background-color: #00F;
+    background: #00F;
   }
   100% {
-    background-color: #FFF;
+    background: #FFF;
+  }
+}
+
+@keyframes flashanim1 {
+  0% {
+    background: #F00;
+  }
+  100% {
+    background: #FFF;
   }
 }
 
@@ -110,9 +130,11 @@ input[type=range]::-moz-range-thumb {
 <body>
 <div id="main">
   <div>
+    <div>
       <div>BPM:<span id="bpm-display"></span></div>
       <div><input type="range" min="1" max="180" id="bpm"></div>
       <button type="button" id="start">start</button>
+    </div>
   </div>
 </div>
 <script data-main="metronome" src="3rdparty/require.js"></script>

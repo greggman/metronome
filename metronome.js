@@ -10,6 +10,11 @@ require([
     coinishAxe:        { jsfx: ["square",0.0000,0.4000,0.0000,0.0200,0.4080,0.3400,20.0000,692.0000,2400.0000,0.0000,0.0000,0.0000,0.0100,0.0003,0.0000,0.4740,0.1110,0.0000,0.0000,0.0000,0.0000,0.0000,1.0000,0.0000,0.0000,0.0000,0.0000] , },
   };
 
+  const bpmDisplayElem = document.querySelector('#bpm-display');
+  const bpmInputElem = document.querySelector('#bpm');
+  const startElem = document.querySelector('#start');
+  const mainElem = document.querySelector('#main>div');
+
   const keys = Object.keys(sounds);
   const audioManager = new AudioManager(sounds);
   let ndx = 0;
@@ -38,13 +43,10 @@ require([
       beat = (beat + 1) % beats.length;
       audioManager.playSound(sound, 0, false);
       timeElapsed = timeElapsed % timePerBeat;
+      mainElem.className = mainElem.className === 'flash0' ?  'flash1' : 'flash0';
     }
     requestAnimationFrame(render);
   }
-
-  const bpmDisplayElem = document.querySelector('#bpm-display');
-  const bpmInputElem = document.querySelector('#bpm');
-  const startElem = document.querySelector('#start');
 
   function updateBPMDisplay() {
     bpmDisplayElem.textContent = bpm;
@@ -62,7 +64,6 @@ require([
       started = true;
       requestAnimationFrame(render);
     }
-    document.body.className = "flash";
     beat = 0;
     timeMult = 1 - timeMult;
     timeElapsed = 0;
