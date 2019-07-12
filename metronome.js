@@ -20,10 +20,10 @@ require([
   let ndx = 0;
 
   const beats = [
-    'ichi',
-    'ni',
-    'san',
-    'shi',
+    { name: 'ichi', delay: 0.25, },
+    { name: 'ni',   delay: 0.15, },
+    { name: 'san',  delay: 0, },
+    { name: 'shi',  delay: 0.1, },
   ];
 
   let bpm = 60;
@@ -41,7 +41,7 @@ require([
     if (timeElapsed >= timePerBeat) {
       const sound = beats[beat];
       beat = (beat + 1) % beats.length;
-      audioManager.playSound(sound, 0, false);
+      audioManager.playSound(sound.name, audioManager.getTime() + sound.delay, false);
       timeElapsed = timeElapsed % timePerBeat;
       mainElem.className = mainElem.className === 'flash0' ?  'flash1' : 'flash0';
     }
@@ -69,12 +69,5 @@ require([
     timeElapsed = 0;
 
     startElem.textContent = timeMult ? 'stop' : 'start';
-
-    /*
-    const name = keys[ndx];
-    console.log('play:', name);
-    audioManager.playSound(name, 0, false);
-    ndx = (ndx + 1) % keys.length;
-    */
   });
 });
