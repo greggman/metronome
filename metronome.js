@@ -10,10 +10,29 @@ require([
     coinishAxe:        { jsfx: ["square",0.0000,0.4000,0.0000,0.0200,0.4080,0.3400,20.0000,692.0000,2400.0000,0.0000,0.0000,0.0000,0.0100,0.0003,0.0000,0.4740,0.1110,0.0000,0.0000,0.0000,0.0000,0.0000,1.0000,0.0000,0.0000,0.0000,0.0000] , },
   };
 
+  const langs = {
+    'en': {
+      start: 'start',
+      stop: 'stop',
+      bpm: 'bpm',
+    },
+    'ja': {
+      start: 'スタート',
+      stop: 'ストップ',
+      bpm: 'テンポ',
+    },
+  };
+  const query = new URLSearchParams(window.location.search);
+  const lang = langs[query.get('lang')] || langs[navigator.language] || langs[navigator.language.substr(0, 2)] || langs.en;
+
+  const bpmLabelElem = document.querySelector('#bpm-label');
   const bpmDisplayElem = document.querySelector('#bpm-display');
   const bpmInputElem = document.querySelector('#bpm');
   const startElem = document.querySelector('#start');
   const mainElem = document.querySelector('#main>div');
+
+  bpmLabelElem.textContent = lang.bpm;
+  startElem.textContent = lang.start;
 
   const keys = Object.keys(sounds);
   const audioManager = new AudioManager(sounds);
@@ -68,6 +87,6 @@ require([
     timeMult = 1 - timeMult;
     timeElapsed = 0;
 
-    startElem.textContent = timeMult ? 'stop' : 'start';
+    startElem.textContent = timeMult ? lang.stop : lang.start;
   });
 });
