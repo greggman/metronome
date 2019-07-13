@@ -23,7 +23,7 @@ require([
     { name: 'ichi', delay: 0.25, },
     { name: 'ni',   delay: 0.15, },
     { name: 'san',  delay: 0, },
-    { name: 'shi',  delay: 0.1, },
+    { name: 'shi',  delay: 0.05, },
   ];
 
   let bpm = 60;
