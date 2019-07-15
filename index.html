@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Metronome</title>
 
-<link href="resources/image/icon\.png" rel="shortcut icon" type="image/png">
+<link href="resources/image/icon.png" rel="shortcut icon" type="image/png">
 <style>
 html {
   box-sizing: border-box;
@@ -23,6 +23,9 @@ body, button, input {
   font-size: 24pt;
   font-family: sans-serif;
   font-weight: bold;
+}
+select {
+  font-size: 16pt;
 }
 input {
   width: 300px;
@@ -126,6 +129,11 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer;
 }
 
+#lang-selection {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+}
 </style>
 </head>
 <body>
@@ -137,6 +145,9 @@ input[type=range]::-moz-range-thumb {
       <button type="button" id="start"></button>
     </div>
   </div>
+</div>
+<div id="lang-selection">
+  <select id="langs"></select>
 </div>
 <script data-main="metronome" src="3rdparty/require.js"></script>
 </body>
